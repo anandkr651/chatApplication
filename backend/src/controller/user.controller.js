@@ -93,8 +93,6 @@ const login = async (req, res) => {
         }
         const accessToken = await generateAccessToken(existUser._id);
         // console.log(accessToken);
-        existUser.token=accessToken;
-        await existUser.save();
 
         const option = {
             httpOnly: true,
@@ -161,19 +159,5 @@ const allUserExceptOnline = async(req,res)=>{
         });
     }
 }
-const getOnlineUser = async(req,res)=>{
-    try {
-        return res.status(201).json({
-            data:req.user
-         })
-        
-    } catch (error) {
-        return res.status(500).json({
-            message: error.message || error,
-            error: true,
-            success: false,
-        });
-    }
-}
 
-export { registerUser, login ,logout,allUserExceptOnline,getOnlineUser};
+export { registerUser, login ,logout,allUserExceptOnline};

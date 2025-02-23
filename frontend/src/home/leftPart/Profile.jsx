@@ -8,8 +8,8 @@ function Profile({user}) {
           </div>
         </div>
         <div className="ml-2">
-          <h1 className="text-xl italic font-bold ">user.fullname</h1>
-          <span className="font-medium ">user.email</span>
+          <h1 className="text-xl italic font-bold ">{user.fullname}</h1>
+          <span className="font-medium ">{user.email}</span>
         </div>
       </div>
   )
