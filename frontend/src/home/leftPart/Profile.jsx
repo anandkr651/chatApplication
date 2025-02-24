@@ -1,6 +1,11 @@
+import useConversation from "../../zustand/useConversation.js"
 
 function Profile({user}) {
+  const {selectedConversation,setSelectedConversation}=useConversation()
+  const isSelected=selectedConversation?._id===user._id;
+  // console.log(isSelected);
   return (
+    <div className={`hover:bg-slate-600 duration-300 ${isSelected ? "bg-slate-700":""}`} onClick={()=>setSelectedConversation(user)}>
     <div className="flex px-5 py-2 hover:bg-slate-700 duration-300 cursor-pointer">
         <div className="avatar online">
           <div className="w-12 rounded-full">
@@ -12,6 +17,7 @@ function Profile({user}) {
           <span className="font-medium ">{user.email}</span>
         </div>
       </div>
+    </div>
   )
 }
 

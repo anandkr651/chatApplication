@@ -14,3 +14,5 @@ export default defineConfig({
     }
   }
 })
+
+//backend and frontend same port pe chalega

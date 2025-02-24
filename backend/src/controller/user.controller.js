@@ -48,10 +48,18 @@ const registerUser = async (req, res) => {
                 success: false,
             });
         }
-
-        return res.status(201).json({
+        const accessToken = await generateAccessToken(user._id);
+        const option = {
+            httpOnly: true,
+            secure: true,
+            sameSite: "strict",
+        }
+        return res.status(201)
+        .cookie("accessToken", accessToken, option)
+        .json({
             message: "user registered successfully",
             data: createUser,
+            accessToken:accessToken,
         });
     } catch (error) {
         return res.status(500).json({
@@ -104,12 +112,8 @@ const login = async (req, res) => {
         .cookie("accessToken", accessToken, option)
             .json({
                 message: "login successfully",
-                error: false,
-                success: true,
-                data: {
-                    accessToken,
-                    
-                },
+                user:existUser,
+                data: accessToken,
             });
     } catch (error) {
         return res.status(500).json({
