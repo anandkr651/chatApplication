@@ -58,7 +58,7 @@ const registerUser = async (req, res) => {
         .cookie("accessToken", accessToken, option)
         .json({
             message: "user registered successfully",
-            data: createUser,
+            user: createUser,
             accessToken:accessToken,
         });
     } catch (error) {
