@@ -6,7 +6,7 @@ function TypeSend() {
   const [message, setMessage] = useState("");
   const { sendMessage } = useSendMessage();
 
-  const handleSubmit = async(e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     await sendMessage(message);
     setMessage("");
@@ -22,7 +22,7 @@ function TypeSend() {
           className="p-2 outline-none w-[100%] rounded-lg border border-blue-500"
         />
         <div className="text-3xl px-4">
-          <IoSend onClick={handleSubmit}/>
+          <IoSend onClick={handleSubmit} />
         </div>
       </div>
     </form>

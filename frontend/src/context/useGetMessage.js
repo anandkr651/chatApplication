@@ -5,16 +5,14 @@ import axios from "axios";
 function useGetMessage() {
   const { messages, setMessages, selectedConversation } = useConversation();
   // console.log(selectedConversation);
-  
+
   useEffect(() => {
     const getMessage = async () => {
       if (selectedConversation && selectedConversation._id) {
         try {
-          const res = await axios.get(
-            `/api/v1/messages/get/${selectedConversation._id}`
-          );
+          const res = await axios.get(`/api/messages/get/${selectedConversation._id}`);
           // console.log(res.data);
-          
+
           setMessages(res.data);
         } catch (error) {
           console.log("error in getting message", error);

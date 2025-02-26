@@ -1,5 +1,5 @@
-import useGetAllUser from "../../context/useGetAllUser.js";
-import Profile from "./Profile";
+import useGetAllUser from "../../context/useGetAllUser.jsx";
+import Profile from "./Profile.jsx";
 
 function User() {
   const [alluser] = useGetAllUser();
@@ -11,7 +11,7 @@ function User() {
         Message
       </h1>
       <div className="mt-32 mb-10">
-      {alluser.map((user, index) => (
+        {alluser.map((user, index) => (
           <Profile key={index} user={user} />
         ))}
       </div>

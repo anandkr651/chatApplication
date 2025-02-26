@@ -1,6 +1,6 @@
 import mongooes from "mongoose";
 import { User } from "./user.model.js";
-import {Message} from "./message.model.js"
+import { Message } from "./message.model.js";
 const conversationSchema = new mongooes.Schema(
     {
         members: [
@@ -9,13 +9,13 @@ const conversationSchema = new mongooes.Schema(
                 ref: User,
             },
         ],
-        messages:[
+        messages: [
             {
                 type: mongooes.Schema.Types.ObjectId,
-                ref:Message,
-                default:[]
-            }
-        ]
+                ref: Message,
+                default: [],
+            },
+        ],
     },
     {
         timestamps: true,

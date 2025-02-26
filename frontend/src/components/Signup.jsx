@@ -1,11 +1,11 @@
 import { useForm } from "react-hook-form";
 import axios from "axios";
-import {toast} from 'react-hot-toast';
+import { toast } from "react-hot-toast";
 import { useAuth } from "../context/AuthProvider.jsx";
-import { Link ,useNavigate} from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function Signup() {
-  const [authUser,setAuthUser]=useAuth()
+  const [authUser, setAuthUser] = useAuth();
   const navigate = useNavigate();
   const {
     register,
@@ -20,26 +20,27 @@ function Signup() {
     return value === password || "Password do not match";
   };
 
-  const onSubmit = async(data) => {
+  const onSubmit = async (data) => {
     const userInfo = {
-      fullname:data.fullname,
-      email:data.email,
-      password:data.password,
-      confirmPassword:data.confirmPassword
-    }
-    await axios.post("/api/v1/users/register",userInfo) //go to vite.config.js
-    .then((res)=>{
-      if(res.data){
-        toast.success(res.data.message)
-      }
-      localStorage.setItem("chatApp",JSON.stringify(res.data));
-      setAuthUser(res.data);
-      navigate("/", { replace: true });
-    })
-    .catch((err)=>{
-      toast.error(err.response.data.message)
-    })
-  }
+      fullname: data.fullname,
+      email: data.email,
+      password: data.password,
+      confirmPassword: data.confirmPassword,
+    };
+    await axios
+      .post("/api/users/register", userInfo) //go to vite.config.js
+      .then((res) => {
+        if (res.data) {
+          toast.success(res.data.message);
+        }
+        localStorage.setItem("chatApp", JSON.stringify(res.data));
+        setAuthUser(res.data);
+        navigate("/", { replace: true });
+      })
+      .catch((err) => {
+        toast.error(err.response.data.message);
+      });
+  };
   return (
     <>
       <div className="h-screen flex items-center justify-center ">
@@ -149,7 +150,11 @@ function Signup() {
                 <Link to="/login">login</Link>
               </span>
             </p>
-             <input type="submit" value="signup" className="bg-green-600 px-2 py-1 rounded-xl font-medium text-white cursor-pointer "/>
+            <input
+              type="submit"
+              value="signup"
+              className="bg-green-600 px-2 py-1 rounded-xl font-medium text-white cursor-pointer "
+            />
           </div>
         </form>
       </div>

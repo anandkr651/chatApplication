@@ -42,7 +42,7 @@ const sendMessage = async (req, res) => {
 const getMessage = async (req, res) => {
     try {
         const { id: reciverId } = req.params;
-        const senderId = req.user.id; 
+        const senderId = req.user.id;
 
         let conversation = await Conversation.findOne({
             members: { $all: [senderId, reciverId] },
@@ -50,7 +50,7 @@ const getMessage = async (req, res) => {
         if (!conversation) {
             return res.status(200).json([]);
         }
-        const message=conversation.messages;
+        const message = conversation.messages;
         return res.status(200).json(message);
     } catch (error) {
         return res.status(500).json({

@@ -1,21 +1,20 @@
-import { createContext, useContext, useState } from 'react'
+import { createContext, useContext, useState } from "react";
 import Cookies from "js-cookie";
 
-export const AuthContext = createContext()
-export default function AuthProvider({children}) {
+export const AuthContext = createContext();
+export default function AuthProvider({ children }) {
+  const initialState = Cookies.get("accessToken") || localStorage.getItem("chatApp");
+  // console.log(initialState);
 
-    const initialState =Cookies.get("accessToken")||localStorage.getItem("chatApp")
-    // console.log(initialState);
-    
-    const [authUser , setAuthUser] = useState(
-        initialState ? JSON.parse(initialState) :undefined
-    )
-    // console.log(authUser);
-    
+  const [authUser, setAuthUser] = useState(
+    initialState ? JSON.parse(initialState) : undefined
+  );
+  // console.log(authUser);
+
   return (
-   <AuthContext.Provider value={[authUser,setAuthUser]} >
-    {children}
-   </AuthContext.Provider>
-  )
+    <AuthContext.Provider value={[authUser, setAuthUser]}>
+      {children}
+    </AuthContext.Provider>
+  );
 }
-export const useAuth = () => useContext(AuthContext)
+export const useAuth = () => useContext(AuthContext);

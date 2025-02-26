@@ -1,12 +1,12 @@
 import { useForm } from "react-hook-form";
 import axios from "axios";
-import {toast} from 'react-hot-toast';
+import { toast } from "react-hot-toast";
 import { useAuth } from "../context/AuthProvider.jsx";
-import { Link ,useNavigate} from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function Login() {
-    const [authUser,setAuthUser]=useAuth()
-    const navigate = useNavigate();
+  const [authUser, setAuthUser] = useAuth();
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -14,22 +14,23 @@ function Login() {
   } = useForm();
   const onSubmit = (data) => {
     const userInfo = {
-      email:data.email,
-      password:data.password
-    }
-    axios.post("/api/v1/users/login",userInfo)   //go to vite.config.js
-    .then((res)=>{
-      if(res.data){
-        toast.success(res.data.message)
-      }
-      localStorage.setItem("chatApp",JSON.stringify(res.data));
-      setAuthUser(res.data);
-      navigate("/", { replace: true });
-    })
-    .catch((err)=>{
-      toast.error("login failed")
-    })
-  }
+      email: data.email,
+      password: data.password,
+    };
+    axios
+      .post("/api/users/login", userInfo) //go to vite.config.js
+      .then((res) => {
+        if (res.data) {
+          toast.success(res.data.message);
+        }
+        localStorage.setItem("chatApp", JSON.stringify(res.data));
+        setAuthUser(res.data);
+        navigate("/", { replace: true });
+      })
+      .catch((err) => {
+        toast.error("login failed");
+      });
+  };
   return (
     <>
       <div className="h-screen flex items-center justify-center ">
@@ -89,7 +90,7 @@ function Login() {
             <p className="font-semibold ">
               New User?{" "}
               <span className="text-blue-600 underline cursor-pointer">
-              <Link to="/signup">signup</Link>
+                <Link to="/signup">signup</Link>
               </span>
             </p>
             <input

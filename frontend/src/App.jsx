@@ -13,19 +13,19 @@ import {
 } from "react-router-dom";
 
 function App() {
-  const [authUser,setAuthUser]= useAuth();
+  const [authUser, setAuthUser] = useAuth();
   // console.log(authUser);
   const router = createBrowserRouter(
     createRoutesFromElements(
       <>
-    <Route>
-      <Route path="/" element={authUser ? (<div className="flex h-screen"><Left /><Right /></div>) : (<Navigate to="/login" />)} />
-      <Route path="/signup" element={authUser ? <Navigate to="/" /> : <Signup />} />
-      <Route path="/login" element={authUser ? <Navigate to="/" /> : <Login />} />
-    </Route>
+        <Route>
+          <Route path="/" element={authUser ? (<div className="flex h-screen"><Left /><Right /></div> ) : (<Navigate to="/login" />)}/>
+          <Route path="/signup" element={authUser ? <Navigate to="/" /> : <Signup />} />
+          <Route path="/login" element={authUser ? <Navigate to="/" /> : <Login />} />
+        </Route>
       </>
-  )
-)
+    )
+  );
   return (
     <div>
       <RouterProvider router={router} />

@@ -53,13 +53,11 @@ const registerUser = async (req, res) => {
             httpOnly: true,
             secure: true,
             sameSite: "strict",
-        }
-        return res.status(201)
-        .cookie("accessToken", accessToken, option)
-        .json({
+        };
+        return res.status(201).cookie("accessToken", accessToken, option).json({
             message: "user registered successfully",
             user: createUser,
-            accessToken:accessToken,
+            accessToken: accessToken,
         });
     } catch (error) {
         return res.status(500).json({
@@ -106,15 +104,12 @@ const login = async (req, res) => {
             httpOnly: true,
             secure: true,
             sameSite: "strict",
-        }
-        return res
-        .status(200)
-        .cookie("accessToken", accessToken, option)
-            .json({
-                message: "login successfully",
-                user:existUser,
-                data: accessToken,
-            });
+        };
+        return res.status(200).cookie("accessToken", accessToken, option).json({
+            message: "login successfully",
+            user: existUser,
+            data: accessToken,
+        });
     } catch (error) {
         return res.status(500).json({
             message: error.message || error,
@@ -124,17 +119,14 @@ const login = async (req, res) => {
     }
 };
 
-const logout = async(req,res)=>{
+const logout = async (req, res) => {
     try {
         const option = {
             httpOnly: true,
             secure: true,
             sameSite: "None",
         };
-        return res
-        .status(200)
-        .clearCookie("accessToken", option)
-        .json({
+        return res.status(200).clearCookie("accessToken", option).json({
             message: "user logged out",
             success: true,
             error: false,
@@ -146,15 +138,17 @@ const logout = async(req,res)=>{
             success: false,
         });
     }
-}
+};
 
-const allUserExceptOnline = async(req,res)=>{
+const allUserExceptOnline = async (req, res) => {
     try {
-        const loggedInUser=req.user._id;
-        const alluser=await User.find({_id:{$ne:loggedInUser}}).select("-password");
+        const loggedInUser = req.user._id;
+        const alluser = await User.find({ _id: { $ne: loggedInUser } }).select(
+            "-password"
+        );
         return res.status(201).json({
-           data:alluser,
-        })
+            data: alluser,
+        });
     } catch (error) {
         return res.status(500).json({
             message: error.message || error,
@@ -162,6 +156,6 @@ const allUserExceptOnline = async(req,res)=>{
             success: false,
         });
     }
-}
+};
 
-export { registerUser, login ,logout,allUserExceptOnline};
+export { registerUser, login, logout, allUserExceptOnline };

@@ -1,12 +1,18 @@
-import useConversation from "../../zustand/useConversation.js"
+import useConversation from "../../zustand/useConversation.js";
 
-function Profile({user}) {
-  const {selectedConversation,setSelectedConversation}=useConversation()
-  const isSelected=selectedConversation?._id===user._id;
+function Profile({ user }) {
+  const { selectedConversation, setSelectedConversation } = useConversation();
+  const isSelected = selectedConversation?._id === user._id;
   // console.log(isSelected);
+
   return (
-    <div className={`hover:bg-slate-600 duration-300 ${isSelected ? "bg-slate-700":""}`} onClick={()=>setSelectedConversation(user)}>
-    <div className="flex px-5 py-2 hover:bg-slate-700 duration-300 cursor-pointer">
+    <div
+      className={`hover:bg-slate-600 duration-300 ${
+        isSelected ? "bg-slate-700" : ""
+      }`}
+      onClick={() => setSelectedConversation(user)}
+    >
+      <div className="flex px-5 py-2 hover:bg-slate-700 duration-300 cursor-pointer">
         <div className="avatar online">
           <div className="w-12 rounded-full">
             <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
@@ -18,7 +24,7 @@ function Profile({user}) {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-export default Profile
+export default Profile;
