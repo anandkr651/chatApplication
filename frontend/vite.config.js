@@ -16,3 +16,4 @@ export default defineConfig({
 });
 
 //backend and frontend same port pe chalega
+//cookie is not come in the console so i can use the proxy
