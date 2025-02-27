@@ -18,7 +18,7 @@ function Login() {
       password: data.password,
     };
     axios
-      .post("/api/users/login", userInfo) //go to vite.config.js
+      .post("/api/users/login", userInfo, { withCredentials: true }) //go to vite.config.js
       .then((res) => {
         if (res.data) {
           toast.success(res.data.message);

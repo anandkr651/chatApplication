@@ -28,7 +28,7 @@ function Signup() {
       confirmPassword: data.confirmPassword,
     };
     await axios
-      .post("/api/users/register", userInfo) //go to vite.config.js
+      .post("/api/users/register", userInfo, { withCredentials: true }) //go to vite.config.js
       .then((res) => {
         if (res.data) {
           toast.success(res.data.message);
