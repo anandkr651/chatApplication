@@ -8,12 +8,19 @@ function DisplayMessage({ messageFromSender }) {
   const chatName = itsMe ? "chat-end" : "chat-start";
   const chatColor = itsMe ? "chat-bubble-info" : "chat-bubble-primary";
 
+const createdAt = new Date(messageFromSender.createdAt)
+const formattedTime = createdAt.toLocaleTimeString([],{
+  hour:'2-digit',
+  minute:'2-digit'
+})
+
   return (
     <div className="">
       <div className={`chat ${chatName} `}>
         <div className={`chat-bubble font-bold italic ${chatColor}`}>
           {messageFromSender.message}
         </div>
+        <div className="chat-footer">{formattedTime}</div>
       </div>
     </div>
   );

@@ -7,7 +7,7 @@ function useGetAllUser() {
   useEffect(() => {
     const getusers = async () => {
       try {
-        const response = await axios.get("/api/users/allUserExceptOnline", { withCredentials: true });
+        const response = await axios.get("/api/users/allUserExceptOnline");
         // console.log(response.data.data);
 
         setAlluser(response.data.data);

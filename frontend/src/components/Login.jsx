@@ -1,7 +1,8 @@
-import { useForm } from "react-hook-form";
 import axios from "axios";
-import { toast } from "react-hot-toast";
+import React from "react";
+import { useForm } from "react-hook-form";
 import { useAuth } from "../context/AuthProvider.jsx";
+import { toast } from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
 
 function Login() {
@@ -18,7 +19,7 @@ function Login() {
       password: data.password,
     };
     axios
-      .post("/api/users/login", userInfo, { withCredentials: true }) //go to vite.config.js
+      .post("/api/users/login", userInfo) //go to vite.config.js
       .then((res) => {
         if (res.data) {
           toast.success(res.data.message);

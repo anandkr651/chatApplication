@@ -1,10 +1,12 @@
 import { useEffect, useRef } from "react";
 import useGetMessage from "../../context/useGetMessage.js";
 import DisplayMessage from "./DisplayMessage.jsx";
+import useGetSocketMessages from "../../context/useGetSocketMessages.js";
 
 function Messages() {
   const { messages } = useGetMessage();
   // console.log(messages);
+  useGetSocketMessages()  //listin incomming messages
 
   const lastMsgRef = useRef();
   useEffect(() => {
@@ -20,11 +22,9 @@ function Messages() {
         <div className="mb-[8%]">
           {messages.map((dispMessage) => {
             return (
-              <DisplayMessage
-                key={dispMessage._id}
-                ref={lastMsgRef}
-                messageFromSender={dispMessage}
-              />
+              <div key={dispMessage._id}  ref={lastMsgRef}>
+              <DisplayMessage messageFromSender={dispMessage} />
+                </div>
             );
           })}
         </div>

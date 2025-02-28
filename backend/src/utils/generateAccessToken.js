@@ -5,7 +5,7 @@ const generateAccessToken = async (userId) => {
         { _id: userId },
         process.env.ACCESS_TOKEN_SECRET,
         {
-            expiresIn: process.env.ACCESS_TOKEN_EXPIRY,
+          expiresIn: "10d",
         }
     );
     return token;
