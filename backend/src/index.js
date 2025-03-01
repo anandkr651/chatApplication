@@ -20,7 +20,7 @@
 //         console.log("Mongo db connection failed !!! ", err);
 //     });
 
-/************* it also give me error  ********** */
+/*********************** */
 
 // import express from "express";
 // import dotenv from "dotenv";
@@ -87,12 +87,3 @@ app.use("/api/messages", messageRoute);
 server.listen(PORT, () => {
     console.log(`Server is Running on port ${PORT}`);
 });
-
-
-
-
-
-
-
-
-

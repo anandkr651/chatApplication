@@ -78,7 +78,7 @@ const login = async (req, res) => {
                 success: false,
             });
         }
-        const existUser = await User.findOne({ email });
+        const existUser = await User.findOne({ email }); //in this place i cannot use .select("-password") because password is not hash
         if (!existUser) {
             return res.status(400).json({
                 message: "User not register",
@@ -105,9 +105,10 @@ const login = async (req, res) => {
             secure: true,
             sameSite: "strict",
         };
+        const user = await User.findOne({ email }).select("-password");
         return res.status(200).cookie("accessToken", accessToken, option).json({
             message: "login successfully",
-            user: existUser,
+            user: user,
             data: accessToken,
         });
     } catch (error) {

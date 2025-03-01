@@ -13,7 +13,7 @@ const io = new Server(server, {
 });
 
 //realtime message code goes here 
-export const getReciverSocketId=(reciverId)=>{  //message.controllers.jsx
+export const getReciverSocketId=(reciverId)=>{           //message.controllers.jsx call
     return users[reciverId]
 }
 

@@ -16,7 +16,7 @@ function Signup() {
 
   const password = watch("password", "");
   const confirmPassword = watch("confirmPassword", "");
-  const validatePasswordMatch = (value) => {
+  const validatePasswordMatch = (value) => {                                 //password match
     return value === password || "Password do not match";
   };
 
@@ -134,7 +134,7 @@ function Signup() {
               placeholder="Confirm Password"
               {...register("confirmPassword", {
                 required: true,
-                validate: validatePasswordMatch,
+                validate: validatePasswordMatch,                              //password match
               })}
             />
           </label>
